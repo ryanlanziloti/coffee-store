@@ -22,7 +22,7 @@ public class Order_items {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Orders order;
+    private Orders orders;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -37,10 +37,10 @@ public class Order_items {
     public Order_items() {
     }
 
-    public Order_items(Integer order_item_id, Orders order, com.ryan.coffee_store.model.Product product, int quantity,
+    public Order_items(Integer order_item_id, Orders orders, com.ryan.coffee_store.model.Product product, int quantity,
             int item_price) {
         this.order_item_id = order_item_id;
-        this.order = order;
+        this.orders = orders;
         Product = product;
         this.quantity = quantity;
         this.item_price = item_price;
@@ -55,11 +55,11 @@ public class Order_items {
     }
 
     public Orders getOrder() {
-        return order;
+        return orders;
     }
 
-    public void setOrder(Orders order) {
-        this.order = order;
+    public void setOrder(Orders orders) {
+        this.orders = orders;
     }
 
     public Product getProduct() {

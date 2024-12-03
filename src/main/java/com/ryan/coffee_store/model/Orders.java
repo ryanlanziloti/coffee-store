@@ -36,7 +36,7 @@ public class Orders {
     @Column(name = "total_amount", precision = 10, scale = 2)
     private BigDecimal total_amount;
 
-    @OneToMany(mappedBy = "Orders", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Order_items> order_items;
  
     public Orders(Integer order_id, String customer_name, LocalDateTime order_date, String order_status,
