@@ -19,5 +19,8 @@ public interface Order_itemsRepository extends JpaRepository<Order_items, Intege
  
     @Query("SELECT o FROM Order_items o WHERE o.orders.order_id = :order_id")
     List<Order_items> findByOrderId(@Param("order_id") Integer order_id);
+ 
+    @Query("SELECT o FROM Order_items o WHERE o.order_item_id = :order_item_id")
+    Order_items findByOrderItemId(@Param("order_item_id") Integer order_item_id);
 
 }
