@@ -16,10 +16,12 @@ public interface OrderMapper {
 
     OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
+    @Mapping(target = "costumer_id", source = "costumer.costumer_id")
     OrderDTO toDto(Orders orders);
 
     @Mapping(target="order_items", ignore=true)
     @Mapping(target="order_id", ignore=true)
+    @Mapping(target = "costumer.costumer_id", source = "costumer_id")
     Orders toEntity(OrderDTO orderDTO);
  
     List<OrderDTO> toOrderDtos(List<Orders> orders);

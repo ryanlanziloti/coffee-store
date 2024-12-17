@@ -6,9 +6,9 @@ import java.util.Set;
 
 public record OrderDTO(
     Integer order_id,
-    String customer_name,
     LocalDateTime order_date,
     String order_status,
     BigDecimal total_amount,
+    Integer costumer_id,
     Set<OrderItemDTO> order_items
 ) {}

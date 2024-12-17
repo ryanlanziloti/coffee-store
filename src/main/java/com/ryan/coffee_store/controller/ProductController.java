@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +23,7 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-
-    
+ 
  
     //GET
     @GetMapping
@@ -35,10 +36,22 @@ public class ProductController {
         return new ResponseEntity<>(productService.getById(id), HttpStatus.OK);
     }
 
+    //UPDATE
+    @PutMapping("/{id}")
+    public ProductDTO editProduct(@PathVariable Integer id, @RequestBody ProductDTO newProduct){ 
+        return productService.updateProduct(id, newProduct);
+    }
+
     //CREATE
     @PostMapping
     public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO){
         return new ResponseEntity<>(productService.createProduct(productDTO), HttpStatus.OK);
+    }
+
+    //DELETE 
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable Integer id){
+        productService.deleteProduct(id);
     }
 /* 
     @GetMapping("/{id}")

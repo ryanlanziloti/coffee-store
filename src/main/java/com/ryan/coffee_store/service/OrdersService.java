@@ -40,8 +40,7 @@ public class OrdersService {
     public OrderDTO updateOrder(Integer id, OrderDTO newOrder){
 
         Orders order = orderMapper.toEntity(newOrder);
-
-        order.setCustomer_name(newOrder.customer_name());
+ 
         order.setOrder_status(newOrder.order_status());
         order.setTotal_amount(newOrder.total_amount());
         
