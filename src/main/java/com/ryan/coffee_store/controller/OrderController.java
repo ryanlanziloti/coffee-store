@@ -40,7 +40,8 @@ public class OrderController {
     //UPDATE
     @PutMapping("/{id}")
     public OrderDTO updateOrder(@PathVariable Integer id, @RequestBody OrderDTO order){
-        return ordersService.updateOrder(id, order);
+        OrderDTO o = ordersService.getOrderById(id);
+        return ordersService.updateOrder(id, order, o);
     }
 
     //POST

@@ -32,7 +32,7 @@ public class Costumer {
     @Column(name = "costumer_name", nullable=false)
     private String costumer_name;
 
-    @Column(name = "costumer_email", unique = true, nullable=false)
+    @Column(name = "costumer_email", unique = true, nullable=false) 
     private String costumer_email;
 
     @Column(name = "costumer_password", unique = false, nullable=false)

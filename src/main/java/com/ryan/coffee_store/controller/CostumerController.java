@@ -3,6 +3,7 @@ package com.ryan.coffee_store.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,8 +42,13 @@ public class CostumerController {
 
     //CREATE
     @PostMapping
-    public CostumerDTO createCostumer(@RequestBody CostumerDTO newCostumer){
-        return costumerService.createCostumer(newCostumer);
+    public ResponseEntity<String> createCostumer(@RequestBody CostumerDTO newCostumer){
+        if(isValidEmail(newCostumer.costumer_email())){
+            costumerService.createCostumer(newCostumer);
+        } else{
+            return ResponseEntity.badRequest().body("Invalid Email");
+        }
+        return ResponseEntity.ok("Success"); 
     }
 
     //DELETE
@@ -51,4 +57,9 @@ public class CostumerController {
         costumerService.deleteCostumer(id);
     }
 
+    //SERVICE RULES
+    @SuppressWarnings("empty-statement")
+    private boolean isValidEmail(String email){
+        return email != null && email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
+    }
 }
