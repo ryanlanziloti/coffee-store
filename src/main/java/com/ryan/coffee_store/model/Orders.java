@@ -2,8 +2,7 @@ package com.ryan.coffee_store.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Set;
+import java.util.List; 
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

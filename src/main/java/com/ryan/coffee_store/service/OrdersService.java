@@ -49,9 +49,9 @@ public class OrdersService {
         order.setTotal_amount(newOrder.total_amount());
         //order.getOrder_items().clear();
 
-        for(OrderItemDTO i: orderMapper.toDto(order).order_items()){ 
-            //order_itemsService.createOrderItem(i);
-            
+        for(OrderItemDTO i: newOrder.order_items()){ 
+            OrderItemDTO a = i.addOrderItem(i.order_item_id(),id, i.product_id(), i.quantity(), i.item_price());
+            order_itemsService.createOrderItem(a);
         }
         
         ordersRepository.save(order);
@@ -65,6 +65,11 @@ public class OrdersService {
         Orders orders = orderMapper.toEntity(newOrder);
 
         ordersRepository.save(orders);
+
+        for(OrderItemDTO i: newOrder.order_items()){ 
+            OrderItemDTO a = i.addOrderItem(i.order_item_id(),orders.getOrder_id(), i.product_id(), i.quantity(), i.item_price());
+            order_itemsService.createOrderItem(a);
+        }
 
         return newOrder;
     }
