@@ -43,11 +43,6 @@ public class CostumerController {
     //CREATE
     @PostMapping
     public ResponseEntity<String> createCostumer(@RequestBody CostumerDTO newCostumer){
-        if(isValidEmail(newCostumer.costumer_email())){
-            costumerService.createCostumer(newCostumer);
-        } else{
-            return ResponseEntity.badRequest().body("Invalid Email");
-        }
         return ResponseEntity.ok("Success"); 
     }
 
@@ -55,11 +50,5 @@ public class CostumerController {
     @DeleteMapping("/{id}")
     public void deleteCostumer(@PathVariable Integer id){
         costumerService.deleteCostumer(id);
-    }
-
-    //SERVICE RULES
-    @SuppressWarnings("empty-statement")
-    private boolean isValidEmail(String email){
-        return email != null && email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
     }
 }

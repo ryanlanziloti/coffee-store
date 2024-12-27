@@ -30,6 +30,9 @@ public class Employees {
 
     @Column(name = "employee_name",length=50)
     private String employee_name;
+
+    @Column(name = "employee_password",length=50)
+    private String employee_password;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "employee_role",length=50)

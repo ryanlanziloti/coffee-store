@@ -23,7 +23,7 @@ public class EmployeesController {
     private EmployeesService employeesService;
 
     //GET
-    @GetMapping("/")
+    @GetMapping
     public List<Employees> getAllEmployees(){
         return employeesService.getAllEmployees();
     }
@@ -40,7 +40,7 @@ public class EmployeesController {
     }
 
     //CREATE
-    @PostMapping("/")
+    @PostMapping
     public Employees createEmployee(@RequestBody Employees employee){
         return employeesService.creatEmployees(employee);
     }

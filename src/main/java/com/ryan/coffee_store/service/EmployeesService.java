@@ -30,6 +30,7 @@ public class EmployeesService {
         
         employees.setEmployee_name(newEmployees.getEmployee_name());
         employees.setEmployee_role(newEmployees.getEmployee_role());
+        employees.setEmployee_password(newEmployees.getEmployee_password()); 
 
         return employeesRepository.save(employees);
     }

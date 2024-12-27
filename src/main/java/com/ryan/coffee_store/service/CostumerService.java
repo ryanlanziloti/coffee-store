@@ -37,9 +37,7 @@ public class CostumerService {
 
         Costumer costumer = costumerMapper.toEntity(getCostumerById(id));
         
-        costumer.setCostumer_name(newCostumer.costumer_name());
-        costumer.setCostumer_email(newCostumer.costumer_email());
-        costumer.setCostumer_password(newCostumer.costumer_password());
+        costumer.setCostumer_name(newCostumer.costumer_name()); 
 
         costumerRepository.save(costumer); 
 
