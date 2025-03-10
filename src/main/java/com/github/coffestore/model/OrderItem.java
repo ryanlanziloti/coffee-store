@@ -13,6 +13,7 @@ import lombok.*;
 @Getter 
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "order_items")
 public class OrderItem {

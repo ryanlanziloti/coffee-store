@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.github.coffestore.model.Product;
 import com.github.coffestore.service.ProductService;
@@ -33,14 +35,14 @@ public class ProductController {
 
     //POST
     @PostMapping
-    public Product createProduct(Product product) {
+    public Product createProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
     }
 
     //PUT
     @PutMapping("/{id}")
-    public Product updateProduct(Product product) {
-        return productService.updateProduct(product);
+    public Product updateProduct(@RequestParam  Long id,@RequestBody Product product) {
+        return productService.updateProduct(id,product);
     }
 
     //DELETE

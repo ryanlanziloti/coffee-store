@@ -35,7 +35,7 @@ public class ProductService {
     }
 
     //UPDATE PRODUCT
-    public Product updateProduct(Product product) {
+    public Product updateProduct(Long id,Product product) {
         return productRepository.save(product);
     }
 }
