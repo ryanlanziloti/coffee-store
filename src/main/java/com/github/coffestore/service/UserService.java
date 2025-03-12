@@ -32,8 +32,8 @@ public class UserService{
     //UPDATE USER
     public User updateUser(int id, User newUser){
         User user = getUserById(id);
-        user.setUser_name(newUser.getUser_name());
-        user.setUser_password(newUser.getUser_password());
+        user.setUsername(newUser.getUsername());
+        user.setPassword(newUser.getPassword());
         user.setUser_role(newUser.getUser_role());
         return userRepository.save(user);
     }
