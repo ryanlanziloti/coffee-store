@@ -30,11 +30,12 @@ public class UserService{
     }
 
     //UPDATE USER
-    public User updateUser(int id, User newUser){
-        User user = getUserById(id);
-        user.setUser_name(newUser.getUser_name());
-        user.setUser_password(newUser.getUser_password());
-        user.setUser_role(newUser.getUser_role());
+    public User updateUser(int id, User newUser){ 
+        User user = userRepository.findById(id).orElse(null);
+        user.setUsername(newUser.getUsername());
+        user.setEmail(newUser.getEmail());
+        user.setPassword(newUser.getPassword());
+        user.setRole(newUser.getRole());
         return userRepository.save(user);
     }
 
