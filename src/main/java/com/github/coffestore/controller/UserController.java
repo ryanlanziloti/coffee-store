@@ -3,6 +3,7 @@ package com.github.coffestore.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.coffestore.model.User;
@@ -30,11 +31,8 @@ public class UserController {
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
-
-    @GetMapping("/{id}")
-    public User getUserById(@RequestParam int id) {
-        return userService.getUserById(id);
-    }
+ 
+ 
 
     //POST
     @PostMapping

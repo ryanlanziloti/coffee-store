@@ -16,19 +16,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*; 
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.Collection; 
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@Entity
+@Entity(name = "users")
 @Table(name = "users")
 public class User implements UserDetails{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int id;
 
     @Column(name = "user_name", nullable = false, length = 50)
@@ -37,12 +37,19 @@ public class User implements UserDetails{
     @Column(name = "user_email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "user_password", nullable = false, length = 50)
+    @Column(name = "user_password", nullable = false, length = 255)
     private String password;
 
     @Enumerated(EnumType.STRING)   
     @Column(name = "user_role", nullable = false, length = 5)
     private Role role;
+
+    public User(String username,String password,Role role,String email){
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.email = email;
+    }
 
     public User(){}
 

@@ -1,5 +1,7 @@
 package com.github.coffestore.model.DTOs;
 
-public record RegisterDTO(String username, String password, String role) {
+import com.github.coffestore.model.enums.Role;
+
+public record RegisterDTO(String username, String password, Role role) {
 
 }
