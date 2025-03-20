@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.coffestore.model.DTOs.RegisterDTO;
+import com.github.coffestore.model.enums.Role;
 import com.github.coffestore.model.User;
 import com.github.coffestore.model.DTOs.AuthenticationDTO;
 import com.github.coffestore.model.DTOs.LoginResponseDTO;
-import com.github.coffestore.model.DTOs.RegisterDTO;
 import com.github.coffestore.repository.UserRepository;
 import com.github.coffestore.service.TokenService;
 
@@ -33,6 +33,7 @@ public class AuthenticationController {
     @Autowired
     private TokenService tokenService;
 
+    @SuppressWarnings("rawtypes")
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.username(), data.password());
@@ -43,12 +44,13 @@ public class AuthenticationController {
         return ResponseEntity.ok(new LoginResponseDTO(token)); 
     }
 
+    @SuppressWarnings("rawtypes")
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
         if(this.userRepository.findByUsername(data.username())!= null) return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User newUser = new User(data.username(), encryptedPassword, data.role(),"email@email.com");
+        User newUser = new User(data.username(), encryptedPassword, Role.USER, data.email());
  
         this.userRepository.save(newUser);
 
